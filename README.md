@@ -1,39 +1,109 @@
-## Advanced Lane Finding
-[![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
+# 🚗 Lane & Object Detection Pipeline
 
-The Project
----
+This project implements a robust **lane line detection** and **object detection** system using Python. It combines computer vision techniques for lane detection with a YOLOv5 deep learning model for real-time object recognition (vehicles, pedestrians, traffic signs, etc.).
 
-The goals / steps of this project are the following:
+## 📦 Features
 
-* Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
-* Apply a distortion correction to raw images.
-* Apply a perspective transform to rectify binary image ("birds-eye view").
-* Use color transforms, gradients, etc., to create a thresholded binary image.
-* Detect lane pixels and fit to find the lane boundary.
-* Determine the curvature of the lane and vehicle position with respect to center.
-* Warp the detected lane boundaries back onto the original image.
-* Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
+- 🎯 Accurate lane line detection using color thresholding + perspective transforms
+- 🔍 Multiple object detection with YOLOv5
+- 📸 Supports images and video
+- 🖥️ Streamlit frontend for easy use
+- ⚡ FastAPI backend for model inference
+- 📊 Logs and displays detection stats
 
-The images for camera calibration are stored in the folder called `camera_cal`.  The images in `test_images` are for testing your pipeline on single frames.
+## 🧠 Tech Stack
 
-The `challenge_video.mp4` video is an extra (and optional) challenge for you if you want to test your pipeline under somewhat trickier conditions.  The `harder_challenge.mp4` video is another optional challenge and is brutal!
+| Layer      | Tool / Framework         |
+|------------|--------------------------|
+| Language   | Python                   |
+| Lane Lines | OpenCV + NumPy           |
+| Object Detection | YOLOv5 (PyTorch Hub) |
+| UI         | Streamlit + Bootstrap    |
+| API        | FastAPI                  |
+| Video      | moviepy                  |
 
-If you're feeling ambitious (again, totally optional though), don't stop there!  We encourage you to go out and take video of your own, calibrate your camera and show us how you would implement this project from scratch!
+## 🖼️ Sample Output
 
-## Usage:
+<table>
+<tr>
+<td>Before</td>
+<td>After</td>
+</tr>
+<tr>
+<td><img src="static/input.jpg" width="400"></td>
+<td><img src="static/output.jpg" width="400"></td>
+</tr>
+</table>
 
-### 1. Set up the environment 
-`conda env create -f environment.yml`
+## 🗂️ Folder Structure
 
-To activate the environment:
-
-Window: `conda activate carnd`
-
-Linux, MacOS: `source activate carnd`
-
-### 2. Run the pipeline:
-```bash
-python main.py INPUT_IMAGE OUTPUT_IMAGE_PATH
-python main.py --video INPUT_VIDEO OUTPUT_VIDEO_PATH
 ```
+Advanced-Lane-Lines/
+│
+├── CameraCalibration.py
+├── LaneLines.py
+├── Thresholding.py
+├── PerspectiveTransformation.py
+├── ObjectDetector.py
+├── main.py                 # Main script (image/video)
+├── backend/api.py          # FastAPI backend
+├── frontend/app.py         # Streamlit frontend
+├── logs/log.txt            # Detection logs
+├── static/input.jpg        # Uploaded image
+├── static/output.jpg       # Processed result
+└── yolov5/ (optional)      # YOLOv5 source if cloned
+```
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/PadhmaSini29/lane-object-detection.git
+cd lane-object-detection
+```
+
+### 2️⃣ Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+Or manually:
+
+```bash
+pip install torch torchvision opencv-python matplotlib moviepy docopt streamlit fastapi uvicorn
+```
+
+### 3️⃣ Run Main Script
+
+- Process an image:
+  ```bash
+  python main.py test_images/test1.jpg output_images/output1.jpg
+  ```
+
+- Process a video:
+  ```bash
+  python main.py --video project_video.mp4 output_videos/output_video.mp4
+  ```
+
+## 🌐 Web App
+
+### 🖥️ FastAPI Backend
+
+```bash
+uvicorn backend.api:app --reload
+```
+
+### 💻 Streamlit Frontend
+
+```bash
+streamlit run frontend/app.py
+```
+
+You can upload images and view results interactively.
+
+## 📝 Logs & Stats
+
+Detection logs are stored in `logs/log.txt`, showing object counts per image with timestamps.
+
