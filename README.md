@@ -22,19 +22,6 @@ This project implements a robust **lane line detection** and **object detection*
 | API        | FastAPI                  |
 | Video      | moviepy                  |
 
-## 🖼️ Sample Output
-
-<table>
-<tr>
-<td>Before</td>
-<td>After</td>
-</tr>
-<tr>
-<td><img src="static/input.jpg" width="400"></td>
-<td><img src="static/output.jpg" width="400"></td>
-</tr>
-</table>
-
 ## 🗂️ Folder Structure
 
 ```
